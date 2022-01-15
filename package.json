@@ -1,6 +1,6 @@
 {
     "name": "@inkline/vue-cli-plugin-inkline",
-    "version": "2.3.6",
+    "version": "3.0.0",
     "description": "Vue CLI Plugin for Inkline, the customizable Vue.js UI/UX Library",
     "main": "index.js",
     "scripts": {
