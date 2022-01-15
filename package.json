@@ -8,7 +8,11 @@
         "test:dev": "jest --watch",
         "test:install": "npm run test:install:js && npm run test:install:ts",
         "test:install:js": "cd tests/app && npm install",
-        "test:install:ts": "cd tests/app-ts && npm install"
+        "test:install:ts": "cd tests/app-ts && npm install",
+        "test:dummies": "npm run test:dummies:vue2 && npm run test:dummies:vue2:customizable && npm run test:dummies:vue3",
+        "test:dummies:vue2": "git checkout HEAD -- dummies/vue2 && cd dummies/vue2 && npm install && vue invoke @inkline/vue-cli-plugin-inkline --vue2 && npm run build",
+        "test:dummies:vue2:customizable": "git checkout HEAD -- dummies/vue2 && cd dummies/vue2 && npm install && vue invoke @inkline/vue-cli-plugin-inkline --vue2 --customizable && npm run build",
+        "test:dummies:vue3": "git checkout HEAD -- dummies/vue3 && cd dummies/vue3 && npm install && vue invoke @inkline/vue-cli-plugin-inkline && npm run build"
     },
     "dependencies": {
         "@inkline/inkline": "^2.3.6"
