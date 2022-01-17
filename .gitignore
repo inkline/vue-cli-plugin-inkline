@@ -110,3 +110,8 @@ packages/vue-cli-plugin/tests/app/dist*
 
 # README
 packages/inkline/README.md
+
+# Dummies
+dummies/**/vue.config.js
+dummies/**/dist/
+dummies/**/package-lock.json
