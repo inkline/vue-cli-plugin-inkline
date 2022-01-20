@@ -12,11 +12,10 @@
     "vue": "^2.6.11"
   },
   "devDependencies": {
-    "@inkline/vue-cli-plugin-inkline": "2.3.6",
+    "@inkline/vue-cli-plugin-inkline": "3.0.0",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "@vue/cli": "~4.5.0",
-    "vue-template-compiler": "^2.6.11",
-    "sass-loader": "<6.0.0"
+    "vue-template-compiler": "^2.6.11"
   }
 }
