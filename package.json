@@ -6,12 +6,12 @@
     "scripts": {
         "build": "rimraf lib && tsc -d -p tsconfig.cjs.json",
         "postbuild": "ts-node scripts/postbuild.ts",
-        "lint": "eslint --ext .js,.ts src",
+        "lint": "eslint --ext .ts src",
         "pretest": "ts-node scripts/pretest.ts",
         "test": "vitest run",
         "pretest:dev": "npm run pretest",
         "test:dev": "vitest",
-        "prerelease": "npm run lint && npm run test && npm run build",
+        "prerelease": "npm run test && npm run build",
         "release": "np",
         "postrelease": "ts-node scripts/postrelease.ts",
         "postversion": "ts-node scripts/postversion.ts"
