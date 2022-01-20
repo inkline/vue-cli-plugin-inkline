@@ -1,5 +1,5 @@
 # Inkline - Vue CLI Plugin
-[![CI](https://github.com/el-cms/vue-cli-plugin-inkline/actions/workflows/node.js.yml/badge.svg)](https://github.com/el-cms/vue-cli-plugin-inkline/actions/workflows/node.js.yml)
+[![CI](https://github.com/inkline/vue-cli-plugin-inkline/actions/workflows/build.yml/badge.svg)](https://github.com/inkline/vue-cli-plugin-inkline/actions/workflows/build.yml)
 
 [Vue CLI](https://github.com/vuejs/vue-cli) Plugin for [Inkline](https://github.com/inkline/inkline), the customizable
 Vue.js UI/UX Library.
