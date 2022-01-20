@@ -2,7 +2,7 @@
     "name": "@inkline/vue-cli-plugin-inkline",
     "version": "2.3.6",
     "description": "Vue CLI Plugin for Inkline, the intuitive UI Components library that gives you the foundation for building high-quality, accessible, and customizable Vue.js Design Systems.",
-    "main": "index.cjs",
+    "main": "index.js",
     "module": "index.mjs",
     "scripts": {
         "build": "rimraf lib && tsc -d -p tsconfig.mjs.json && mjscjs -p tsconfig.mjs.json && tsc -d -p tsconfig.cjs.json",
@@ -42,7 +42,7 @@
     "exports": {
         ".": {
             "import": "./index.mjs",
-            "require": "./index.cjs",
+            "require": "./index.js",
             "types": "./index.d.ts"
         },
         "./*": "./*"
