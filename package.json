@@ -5,7 +5,7 @@
     "main": "index.cjs",
     "module": "index.mjs",
     "scripts": {
-        "build": "rimraf lib && tsc -d -p tsconfig.mjs.json && mjscjs -p tsconfig.mjs.json && tsc -d -p tsconfig.cjs.json && mjscjs -p tsconfig.cjs.json",
+        "build": "rimraf lib && tsc -d -p tsconfig.mjs.json && mjscjs -p tsconfig.mjs.json && tsc -d -p tsconfig.cjs.json",
         "postbuild": "ts-node scripts/postbuild.ts",
         "lint": "eslint --ext .js,.ts src",
         "pretest": "ts-node scripts/pretest.ts",
