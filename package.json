@@ -3,9 +3,8 @@
     "version": "2.3.6",
     "description": "Vue CLI Plugin for Inkline, the intuitive UI Components library that gives you the foundation for building high-quality, accessible, and customizable Vue.js Design Systems.",
     "main": "index.js",
-    "module": "index.mjs",
     "scripts": {
-        "build": "rimraf lib && tsc -d -p tsconfig.mjs.json && mjscjs -p tsconfig.mjs.json && tsc -d -p tsconfig.cjs.json",
+        "build": "rimraf lib && tsc -d -p tsconfig.cjs.json",
         "postbuild": "ts-node scripts/postbuild.ts",
         "lint": "eslint --ext .js,.ts src",
         "pretest": "ts-node scripts/pretest.ts",
@@ -27,7 +26,6 @@
         "eslint-plugin-import": "2.25.4",
         "eslint-plugin-node": "11.1.0",
         "eslint-plugin-promise": "6.0.0",
-        "mjscjs": "1.0.9",
         "np": "7.6.0",
         "rimraf": "3.0.2",
         "shelljs": "0.8.5",
@@ -41,9 +39,7 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.mjs",
-            "require": "./index.js",
-            "types": "./index.d.ts"
+            "require": "./index.js"
         },
         "./*": "./*"
     },

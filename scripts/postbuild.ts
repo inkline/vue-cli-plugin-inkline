@@ -12,6 +12,10 @@ shell.cd(resolve(__dirname, '..'));
  */
 
 shell.mkdir('lib');
+
+shell.cp('./README.md', 'lib');
+shell.cp('./LICENSE', 'lib');
+
 shell.cp('-R', './lib-cjs/*', 'lib');
 shell.cp('-R', './lib-mjs/*', 'lib');
 

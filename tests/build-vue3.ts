@@ -3,6 +3,7 @@ import { resolve } from 'path';
 
 const __root = resolve(__dirname, '..');
 
+shell.env.NODE_ENV = 'production';
 shell.cd(resolve(__root, 'tests', 'vue3'));
-shell.exec('npx @vue/cli invoke @inkline/vue-cli-plugin-inkline');
+shell.exec('npm run invoke');
 shell.exec('npm run build');

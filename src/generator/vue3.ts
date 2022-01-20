@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { PluginAPI } from "./types";
+import { PluginApi, PluginOptions } from "./types";
 
 const configContentTranspileDependencies = `    transpileDependencies: [
         '@inkline/inkline'
@@ -14,8 +14,7 @@ ${configContentTranspileDependencies}
  *
  * @param api
  */
-
-const addDependencies = (api: PluginAPI) => {
+const addDependencies = (api: PluginApi) => {
     api.extendPackage({
         dependencies: {
             '@inkline/inkline': '^3.0.0'
@@ -28,8 +27,7 @@ const addDependencies = (api: PluginAPI) => {
  *
  * @param api
  */
-
-const addDevDependencies = (api: PluginAPI) => {
+const addDevDependencies = (api: PluginApi) => {
     api.extendPackage({
         devDependencies: {
             'sass': '^1.26.0',
@@ -43,8 +41,7 @@ const addDevDependencies = (api: PluginAPI) => {
  *
  * @param api
  */
-
-const addDefaultImports = (api: PluginAPI) => {
+const addDefaultImports = (api: PluginApi) => {
     api.injectImports(api.entryFile, "import { Inkline, components } from '@inkline/inkline';");
     api.injectImports(api.entryFile, "import '@inkline/inkline/inkline.scss';");
 };
@@ -54,8 +51,7 @@ const addDefaultImports = (api: PluginAPI) => {
  *
  * @param api
  */
-
-const addVueConfig = (api: PluginAPI) => {
+const addVueConfig = (api: PluginApi) => {
     const configPath = api.resolve('vue.config.js');
 
     if (!fs.existsSync(configPath)) {
@@ -65,10 +61,10 @@ const addVueConfig = (api: PluginAPI) => {
 
         if (contents.indexOf('transpileDependencies') !== -1) {
             contents = contents
-              .replace(/( *)(transpileDependencies:\s*\[)/, `$1$2\n$1$1'@inkline/inkline',\n`);
+                .replace(/( *)(transpileDependencies:\s*\[)/, `$1$2\n$1$1'@inkline/inkline',\n`);
         } else {
             contents = contents
-              .replace(/(module\.exports\s*=\s*{)/, `$1\n${configContentTranspileDependencies},\n`);
+                .replace(/(module\.exports\s*=\s*{)/, `$1\n${configContentTranspileDependencies},\n`);
         }
 
         fs.writeFileSync(configPath, contents, { encoding: 'utf-8' });
@@ -79,9 +75,9 @@ const addVueConfig = (api: PluginAPI) => {
  * Add inkline to Vue after importing
  *
  * @param api
+ * @param options
  */
-
-const addIntegration = (api: PluginAPI) => {
+const addIntegration = (api: PluginApi) => {
     // Read and get content
     let content = fs.readFileSync(api.resolve(api.entryFile), { encoding: 'utf-8' });
     const lines = content.split(/\r?\n/g).reverse();
@@ -100,7 +96,7 @@ const addIntegration = (api: PluginAPI) => {
     fs.writeFileSync(api.resolve(api.entryFile), content, { encoding: 'utf-8' });
 };
 
-export default (api: PluginAPI, options: any, rootOptions: any) => {
+export default (api: PluginApi, options: PluginOptions, rootOptions: any) => {
     addDependencies(api);
     addDevDependencies(api);
 

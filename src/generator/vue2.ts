@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { PluginAPI } from "./types";
+import { PluginOptions, PluginApi } from "./types";
 
 const configContentTranspileDependencies = `    transpileDependencies: [
         '@inkline/inkline'
@@ -14,7 +14,7 @@ ${configContentTranspileDependencies}
  *
  * @param api
  */
-const addDependencies = (api: PluginAPI) => {
+const addDependencies = (api: PluginApi) => {
     api.extendPackage({
         dependencies: {
             '@inkline/inkline': '^2.0.0'
@@ -27,7 +27,7 @@ const addDependencies = (api: PluginAPI) => {
  *
  * @param api
  */
-const addDevDependencies = (api: PluginAPI) => {
+const addDevDependencies = (api: PluginApi) => {
     api.extendPackage({
         devDependencies: {
             'node-sass': '<5.0.0',
@@ -41,7 +41,7 @@ const addDevDependencies = (api: PluginAPI) => {
  *
  * @param api
  */
-const addDefaultImports = (api: PluginAPI) => {
+const addDefaultImports = (api: PluginApi) => {
     api.injectImports(api.entryFile, `import Inkline from '@inkline/inkline';`);
     api.injectImports(api.entryFile, `import '@inkline/inkline/dist/inkline.css';`);
 };
@@ -51,7 +51,7 @@ const addDefaultImports = (api: PluginAPI) => {
  *
  * @param api
  */
-const addCustomizableImports = (api: PluginAPI) => {
+const addCustomizableImports = (api: PluginApi) => {
     api.injectImports(api.entryFile, `import { Inkline } from '@inkline/inkline/src';`);
     api.injectImports(api.entryFile, `import * as components from '@inkline/inkline/src/components';`);
     api.injectImports(api.entryFile, `import '@inkline/inkline/src/inkline.scss';`);
@@ -62,7 +62,7 @@ const addCustomizableImports = (api: PluginAPI) => {
  *
  * @param api
  */
-const addVueConfig = (api: PluginAPI) => {
+const addVueConfig = (api: PluginApi) => {
     const configPath = api.resolve('vue.config.js');
 
     if (!fs.existsSync(configPath)) {
@@ -88,13 +88,13 @@ const addVueConfig = (api: PluginAPI) => {
  * @param api
  * @param options
  */
-const addIntegration = (api: PluginAPI, options: any) => {
+const addIntegration = (api: PluginApi, options: PluginOptions) => {
     // Read and get content
     let content = fs.readFileSync(api.resolve(api.entryFile), { encoding: 'utf-8' });
     const lines = content.split(/\r?\n/g).reverse();
 
     // Inject imports
-    let lastImportIndex = lines.findIndex((line: string) => line.match(/^import/));
+    let lastImportIndex = lines.findIndex(line => line.match(/^import/));
 
     if (lastImportIndex === -1) {
         lastImportIndex = 0;
@@ -111,18 +111,18 @@ const addIntegration = (api: PluginAPI, options: any) => {
     fs.writeFileSync(api.resolve(api.entryFile), content, { encoding: 'utf-8' });
 };
 
-export default (api: PluginAPI, options: any, rootOptions: any) => {
+export default (api: PluginApi, options: PluginOptions) => {
     addDependencies(api);
 
-	if (options.customizable) {
+    if (options.customizable) {
         addDevDependencies(api);
         addVueConfig(api);
         addCustomizableImports(api);
     } else {
-	    addDefaultImports(api);
+        addDefaultImports(api);
     }
 
-	api.onCreateComplete(() => {
-		addIntegration(api, options)
-	})
+    api.onCreateComplete(() => {
+        addIntegration(api, options);
+    });
 };
