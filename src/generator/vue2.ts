@@ -1,4 +1,5 @@
-const fs = require('fs');
+import fs from 'fs';
+import { PluginAPI } from "./types";
 
 const configContentTranspileDependencies = `    transpileDependencies: [
         '@inkline/inkline'
@@ -13,7 +14,7 @@ ${configContentTranspileDependencies}
  *
  * @param api
  */
-const addDependencies = (api) => {
+const addDependencies = (api: PluginAPI) => {
     api.extendPackage({
         dependencies: {
             '@inkline/inkline': '^2.0.0'
@@ -26,7 +27,7 @@ const addDependencies = (api) => {
  *
  * @param api
  */
-const addDevDependencies = (api) => {
+const addDevDependencies = (api: PluginAPI) => {
     api.extendPackage({
         devDependencies: {
             'node-sass': '<5.0.0',
@@ -40,7 +41,7 @@ const addDevDependencies = (api) => {
  *
  * @param api
  */
-const addDefaultImports = (api) => {
+const addDefaultImports = (api: PluginAPI) => {
     api.injectImports(api.entryFile, `import Inkline from '@inkline/inkline';`);
     api.injectImports(api.entryFile, `import '@inkline/inkline/dist/inkline.css';`);
 };
@@ -50,7 +51,7 @@ const addDefaultImports = (api) => {
  *
  * @param api
  */
-const addCustomizableImports = (api) => {
+const addCustomizableImports = (api: PluginAPI) => {
     api.injectImports(api.entryFile, `import { Inkline } from '@inkline/inkline/src';`);
     api.injectImports(api.entryFile, `import * as components from '@inkline/inkline/src/components';`);
     api.injectImports(api.entryFile, `import '@inkline/inkline/src/inkline.scss';`);
@@ -61,7 +62,7 @@ const addCustomizableImports = (api) => {
  *
  * @param api
  */
-const addVueConfig = (api) => {
+const addVueConfig = (api: PluginAPI) => {
     const configPath = api.resolve('vue.config.js');
 
     if (!fs.existsSync(configPath)) {
@@ -87,13 +88,13 @@ const addVueConfig = (api) => {
  * @param api
  * @param options
  */
-const addIntegration = (api, options) => {
+const addIntegration = (api: PluginAPI, options: any) => {
     // Read and get content
     let content = fs.readFileSync(api.resolve(api.entryFile), { encoding: 'utf-8' });
     const lines = content.split(/\r?\n/g).reverse();
 
     // Inject imports
-    let lastImportIndex = lines.findIndex(line => line.match(/^import/));
+    let lastImportIndex = lines.findIndex((line: string) => line.match(/^import/));
 
     if (lastImportIndex === -1) {
         lastImportIndex = 0;
@@ -110,7 +111,7 @@ const addIntegration = (api, options) => {
     fs.writeFileSync(api.resolve(api.entryFile), content, { encoding: 'utf-8' });
 };
 
-module.exports = (api, options, rootOptions) => {
+export default (api: PluginAPI, options: any, rootOptions: any) => {
     addDependencies(api);
 
 	if (options.customizable) {

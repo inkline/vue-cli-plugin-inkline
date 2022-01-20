@@ -1,4 +1,5 @@
-const fs = require('fs');
+import fs from 'fs';
+import { PluginAPI } from "./types";
 
 const configContentTranspileDependencies = `    transpileDependencies: [
         '@inkline/inkline'
@@ -13,7 +14,8 @@ ${configContentTranspileDependencies}
  *
  * @param api
  */
-const addDependencies = (api) => {
+
+const addDependencies = (api: PluginAPI) => {
     api.extendPackage({
         dependencies: {
             '@inkline/inkline': '^3.0.0'
@@ -26,7 +28,8 @@ const addDependencies = (api) => {
  *
  * @param api
  */
-const addDevDependencies = (api) => {
+
+const addDevDependencies = (api: PluginAPI) => {
     api.extendPackage({
         devDependencies: {
             'sass': '^1.26.0',
@@ -40,7 +43,8 @@ const addDevDependencies = (api) => {
  *
  * @param api
  */
-const addDefaultImports = (api) => {
+
+const addDefaultImports = (api: PluginAPI) => {
     api.injectImports(api.entryFile, "import { Inkline, components } from '@inkline/inkline';");
     api.injectImports(api.entryFile, "import '@inkline/inkline/inkline.scss';");
 };
@@ -50,7 +54,8 @@ const addDefaultImports = (api) => {
  *
  * @param api
  */
-const addVueConfig = (api) => {
+
+const addVueConfig = (api: PluginAPI) => {
     const configPath = api.resolve('vue.config.js');
 
     if (!fs.existsSync(configPath)) {
@@ -74,9 +79,9 @@ const addVueConfig = (api) => {
  * Add inkline to Vue after importing
  *
  * @param api
- * @param options
  */
-const addIntegration = (api, options) => {
+
+const addIntegration = (api: PluginAPI) => {
     // Read and get content
     let content = fs.readFileSync(api.resolve(api.entryFile), { encoding: 'utf-8' });
     const lines = content.split(/\r?\n/g).reverse();
@@ -95,7 +100,7 @@ const addIntegration = (api, options) => {
     fs.writeFileSync(api.resolve(api.entryFile), content, { encoding: 'utf-8' });
 };
 
-module.exports = (api, options, rootOptions) => {
+export default (api: PluginAPI, options: any, rootOptions: any) => {
     addDependencies(api);
     addDevDependencies(api);
 
@@ -103,6 +108,6 @@ module.exports = (api, options, rootOptions) => {
     addDefaultImports(api);
 
     api.onCreateComplete(() => {
-        addIntegration(api, options)
+        addIntegration(api)
     })
 };

@@ -11,7 +11,7 @@
     "vue": "^3.0.0"
   },
   "devDependencies": {
-    "@inkline/vue-cli-plugin-inkline": "file:../../",
+    "@inkline/vue-cli-plugin-inkline": "file:../../lib",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "@vue/compiler-sfc": "^3.0.0"
