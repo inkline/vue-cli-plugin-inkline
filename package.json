@@ -1,6 +1,6 @@
 {
     "name": "@inkline/vue-cli-plugin-inkline",
-    "version": "3.0.0",
+    "version": "3.0.1",
     "description": "Vue CLI Plugin for Inkline, the intuitive UI Components library that gives you the foundation for building high-quality, accessible, and customizable Vue.js Design Systems.",
     "main": "index.js",
     "scripts": {
