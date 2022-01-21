@@ -1,5 +1,4 @@
-import fs from 'fs';
-import { PluginApi, PluginOptions } from "./types";
+const fs = require('fs');
 
 const configContentTranspileDependencies = `    transpileDependencies: [
         '@inkline/inkline'
@@ -14,7 +13,7 @@ ${configContentTranspileDependencies}
  *
  * @param api
  */
-const addDependencies = (api: PluginApi) => {
+const addDependencies = (api) => {
     api.extendPackage({
         dependencies: {
             '@inkline/inkline': '^3.0.0'
@@ -27,11 +26,11 @@ const addDependencies = (api: PluginApi) => {
  *
  * @param api
  */
-const addDevDependencies = (api: PluginApi) => {
+const addDevDependencies = (api) => {
     api.extendPackage({
         devDependencies: {
-            'sass': '^1.26.0',
-            'sass-loader': '^8.0.0',
+            sass: '^1.26.0',
+            'sass-loader': '^8.0.0'
         }
     });
 };
@@ -41,7 +40,7 @@ const addDevDependencies = (api: PluginApi) => {
  *
  * @param api
  */
-const addDefaultImports = (api: PluginApi) => {
+const addDefaultImports = (api) => {
     api.injectImports(api.entryFile, "import { Inkline, components } from '@inkline/inkline';");
     api.injectImports(api.entryFile, "import '@inkline/inkline/inkline.scss';");
 };
@@ -51,7 +50,7 @@ const addDefaultImports = (api: PluginApi) => {
  *
  * @param api
  */
-const addVueConfig = (api: PluginApi) => {
+const addVueConfig = (api) => {
     const configPath = api.resolve('vue.config.js');
 
     if (!fs.existsSync(configPath)) {
@@ -61,7 +60,7 @@ const addVueConfig = (api: PluginApi) => {
 
         if (contents.indexOf('transpileDependencies') !== -1) {
             contents = contents
-                .replace(/( *)(transpileDependencies:\s*\[)/, `$1$2\n$1$1'@inkline/inkline',\n`);
+                .replace(/( *)(transpileDependencies:\s*\[)/, '$1$2\n$1$1\'@inkline/inkline\',\n');
         } else {
             contents = contents
                 .replace(/(module\.exports\s*=\s*{)/, `$1\n${configContentTranspileDependencies},\n`);
@@ -77,7 +76,7 @@ const addVueConfig = (api: PluginApi) => {
  * @param api
  * @param options
  */
-const addIntegration = (api: PluginApi) => {
+const addIntegration = (api, options) => {
     // Read and get content
     let content = fs.readFileSync(api.resolve(api.entryFile), { encoding: 'utf-8' });
     const lines = content.split(/\r?\n/g).reverse();
@@ -92,11 +91,11 @@ const addIntegration = (api: PluginApi) => {
     lines[appInitialization] = lines[appInitialization].replace('createApp(App)', 'createApp(App).use(Inkline, { components })');
 
     // Write back
-    content = lines.reverse().join(`\n`);
+    content = lines.reverse().join('\n');
     fs.writeFileSync(api.resolve(api.entryFile), content, { encoding: 'utf-8' });
 };
 
-export default (api: PluginApi, options: PluginOptions, rootOptions: any) => {
+module.exports = (api, options, rootOptions) => {
     addDependencies(api);
     addDevDependencies(api);
 
@@ -104,6 +103,6 @@ export default (api: PluginApi, options: PluginOptions, rootOptions: any) => {
     addDefaultImports(api);
 
     api.onCreateComplete(() => {
-        addIntegration(api)
-    })
+        addIntegration(api, options);
+    });
 };

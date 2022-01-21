@@ -4,8 +4,7 @@
     "description": "Vue CLI Plugin for Inkline, the intuitive UI Components library that gives you the foundation for building high-quality, accessible, and customizable Vue.js Design Systems.",
     "main": "index.js",
     "scripts": {
-        "build": "rimraf lib && tsc -d -p tsconfig.cjs.json",
-        "postbuild": "ts-node scripts/postbuild.ts",
+        "build": "rimraf lib && ts-node scripts/build.ts",
         "lint": "eslint --ext .ts src",
         "pretest": "ts-node scripts/pretest.ts",
         "test": "vitest run",

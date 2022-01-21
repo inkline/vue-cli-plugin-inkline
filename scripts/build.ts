@@ -15,11 +15,4 @@ shell.mkdir('lib');
 
 shell.cp('./README.md', 'lib');
 shell.cp('./LICENSE', 'lib');
-
-shell.cp('-R', './lib-cjs/*', 'lib');
-
-/**
- * Remove additional build folders
- */
-
-shell.rm('-R', './lib-cjs');
+shell.cp('-R', './src/*', 'lib');
