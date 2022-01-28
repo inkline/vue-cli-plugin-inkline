@@ -1,12 +1,29 @@
-# Inkline - Vue CLI Plugin
-[![CI](https://github.com/inkline/vue-cli-plugin-inkline/actions/workflows/build.yml/badge.svg)](https://github.com/inkline/vue-cli-plugin-inkline/actions/workflows/build.yml)
+<p align="center">
+    <a href="http://inkline.io/">
+        <img src="https://raw.githubusercontent.com/inkline/inkline.io/main/src/assets/images/logo/logo-black.svg" alt="Inkline logo" width=72 height=72>
+    </a>
+</p>
 
-[Vue CLI](https://github.com/vuejs/vue-cli) Plugin for [Inkline](https://github.com/inkline/inkline), the customizable
-Vue.js UI/UX Library.
+<h1 align="center">Inkline - Vue.js CLI Plugin</h1>
 
-## Install for Vue 3
+<p align="center">
+    Vue.js CLI Plugin for Inkline, the intuitive UI Components library that gives you the foundation for building high quality, accessible, and customizable Vue.js Design Systems.<br/><br/> Inkline is written and maintained by <a href="https://twitter.com/alexgrozav">@alexgrozav</a>. 
+    <br/>
+    <br/>
+    <a href="https://inkline.io">Homepage</a>
+    ·
+    <a href="https://inkline.io/docs/introduction">Documentation</a>
+    ·
+    <a href="https://storybook.inkline.io/">Storybook</a>
+    ·
+    <a href="https://stackblitz.com/edit/inkline?file=src/App.vue">Playground</a>
+    ·
+    <a href="https://github.com/inkline/inkline/issues">Issue Tracker</a>
+</p>
 
-If you haven't yet installed Vue CLI, first follow the installation instructions [here](https://github.com/vuejs/vue-cli).
+## Install for Vue.js 3
+
+If you haven't yet installed Vue.js CLI, first follow the installation instructions [here](https://github.com/vuejs/vue-cli).
 
 If you haven't created a project yet, generate a project using Vue CLI:
 
@@ -53,3 +70,16 @@ To install a tree-shaking and SCSS ready Inkline setup:
 vue add @inkline/vue-cli-plugin-inkline --vue2 --customizable
 ```
 
+## Creator
+**Alex Grozav**
+
+- <https://grozav.com>
+- <https://twitter.com/alexgrozav>
+- <https://facebook.com/alexgrozav>
+- <https://github.com/alexgrozav>
+
+If you use Inkline in your daily work and feel that it has made your life easier, please consider sponsoring me on [Github Sponsors](https://github.com/sponsors/alexgrozav). 💖
+
+## Copyright and license
+Code copyright 2017-2022 [Inkline Authors](https://github.com/inkline/inkline/graphs/contributors).
+Code released under the [MIT License](https://github.com/inkline/inkline/blob/master/packages/inkline/LICENSE).
