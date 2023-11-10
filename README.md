@@ -1,6 +1,11 @@
+# Deprecated 
+### To use Inkline with Vue.js CLI, please refer to the [Installation Documentation](https://www.inkline.io/docs/installation/webpack).
+
+---
+
 <p align="center">
     <a href="http://inkline.io/">
-        <img src="https://raw.githubusercontent.com/inkline/inkline.io/main/src/assets/images/logo/logo-black.svg" alt="Inkline logo" width=72 height=72>
+        <img src="https://www.inkline.io/assets/images/logo/logo-black.svg" alt="Inkline logo" width=72 height=72>
     </a>
 </p>
 
